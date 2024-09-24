@@ -1,29 +1,33 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 ## users テーブル
 
 | Column             | Type   | Options                   |
 | ------------------ | ------ | ------------------------- |
 | name               | string | null: false               |
 | email              | string | null: false, unique: true |
+| password           | string | null: false               |
 | encrypted_password | string | null: false               |
+| first_name_write   | string | null: false               |
+| last_name_write    | string | null: false               |
+| first_name_reading | string | null: false               |
+| last_name_reading  | string | null: false               |
+| birth_year         | string | null: false               |
+| birth_month        | string | null: false               |
+| birth_day          | string | null: false               |
 
 ### Association
 
 - has_many   : orders
-- belongs_to : address
 
 ## goods テーブル
 
-| Column             | Type      | Options                              |
-| ------------------ | --------- | ------------------------------------ |
-| name               | string    | null: false                          |
-| image              | text      | null: false                          |
-| explanation        | text      | null: false                          |
-| price              | decimal   | null: false, precision: 10, scale: 2 |
-| user               | string    | null: false, foreign_key: true       |
+| Column             | Type       | Options                              |
+| ------------------ | ---------- | ------------------------------------ |
+| name               | string     | null: false                          |
+| explanation        | text       | null: false                          |
+| price              | decimal    | null: false, precision: 10, scale: 2 |
+| user               | references | null: false, foreign_key: true       |
 
 ### Association
 
@@ -42,6 +46,7 @@ application up and running.
 ### Association
 
 - belongs_to :user
+- belongs_to :goods
 
 ## orders テーブル
 
@@ -49,23 +54,7 @@ application up and running.
 | ------- | ---------- | ------------------------------------ |
 | user    | references | null: false, foreign_key: true       |
 | goods   | references | null: false, foreign_key: true       |
-| price   | decimal    | null: false, precision: 10, scale: 2 |
 
 ### Association
 
 - belongs_to :user
-
-## card テーブル
-
-| Column        | Type       | Options                              |
-| ------------  | ---------- | ------------------------------------ |
-| card_number   | string     | null: false                          |
-| card_name     | string     | null: false                          |
-| date_expiry   | string     | null: false                          |
-| security code | string     | null: false                          |
-
-### Association
-
-- belongs_to :user
-
-Things you may want to cover:
