@@ -26,19 +26,24 @@
 | explanation        | text       | null: false                          |
 | category           | text       | null: false                          |
 | situation          | text       | null: false                          |
+| load               | text       | null: false                          |
+| region             | text       | null: false                          |
+| day                | text       | null: false                          |
 | price              | integer    | null: false, precision: 10, scale: 2 |
 
 
 ### Association
 
-- has_one :user
-- belongs_to :orders
+- belongs_to :user
+- has_one :order
 
 ## address テーブル
 
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
 | post_code       | string     | null: false                    |
+| prefectures     | string     | null: false                    |
+| municipalities  | string     | null: false                    |
 | address_line1   | string     | null: false                    |
 | address_lien2   | string     | null: false                    |
 | phone_number    | string     | null: false                    |
@@ -47,7 +52,7 @@
 ### Association
 
 - belongs_to :items
-- has_one    :orders
+- has_one    :order
 
 ## orders テーブル
 
@@ -55,9 +60,9 @@
 | ------- | ---------- | ------------------------------------ |
 | user    | references | null: false, foreign_key: true       |
 | item    | references | null: false, foreign_key: true       |
-| address | references | null: false, foreign_key: true       |
 
 ### Association
 
 - belongs_to :user
-- belongs_to :address
+- has_one :address
+- has_one :item
