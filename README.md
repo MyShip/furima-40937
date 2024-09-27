@@ -24,35 +24,42 @@
 | ------------------ | ---------- | ------------------------------------ |
 | name               | string     | null: false                          |
 | explanation        | text       | null: false                          |
-| category           | text       | null: false                          |
-| situation          | text       | null: false                          |
-| load               | text       | null: false                          |
-| region             | text       | null: false                          |
-| day                | text       | null: false                          |
+| category           | integer    | null: false                          |
+| situation          | integer    | null: false                          |
+| load               | integer    | null: false                          |
+| region             | integer    | null: false                          |
+| day                | integer    | null: false                          |
 | price              | integer    | null: false, precision: 10, scale: 2 |
+| user               | references | null: false, foreign_key: true       |
 
 
 ### Association
 
-- belongs_to :user
-- has_one :order
+- belongs_to             : user
+- has_one                : order
+- belongs_to_active_hash : category
+- belongs_to_active_hash : situation 
+- belongs_to_active_hash : load 
+- belongs_to_active_hash : region  
+- belongs_to_active_hash : day  
+
 
 ## address テーブル
 
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
 | post_code       | string     | null: false                    |
-| prefectures     | string     | null: false                    |
+| prefectures     | integer    | null: false                    |
 | municipalities  | string     | null: false                    |
 | address_line1   | string     | null: false                    |
-| address_lien2   | string     | null: false                    |
+| address_line2   | string     |                                |
 | phone_number    | string     | null: false                    |
-| recipient_name  | string     | null: false, foreign_key: true |
+| recipient_name  | bigint     | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :items
-- has_one    :order
+- has_one                :order
+- belongs_to_active_hash : prefectures
 
 ## orders テーブル
 
@@ -64,5 +71,5 @@
 ### Association
 
 - belongs_to :user
-- has_one :address
-- has_one :item
+- has_one    :address
+- belongs_to :items
