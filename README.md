@@ -1,24 +1,75 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column             | Type   | Options                   |
+| ------------------ | ------ | ------------------------- |
+| name               | string | null: false               |
+| email              | string | null: false, unique: true |
+| encrypted_password | string | null: false               |
+| first_name_write   | string | null: false               |
+| last_name_write    | string | null: false               |
+| first_name_reading | string | null: false               |
+| last_name_reading  | string | null: false               |
+| birthday           | date   | null: false               |
 
-* Ruby version
+### Association
 
-* System dependencies
+- has_many   : orders
+- has_many   : items
 
-* Configuration
+## items テーブル
 
-* Database creation
+| Column             | Type       | Options                              |
+| ------------------ | ---------- | ------------------------------------ |
+| name               | string     | null: false                          |
+| explanation        | text       | null: false                          |
+| category_id        | integer    | null: false                          |
+| situation_id       | integer    | null: false                          |
+| load_id            | integer    | null: false                          |
+| prefecture_id      | integer    | null: false                          |
+| day_id             | integer    | null: false                          |
+| price              | integer    | null: false                          |
+| user               | references | null: false, foreign_key: true       |
 
-* Database initialization
 
-* How to run the test suite
+### Association
 
-* Services (job queues, cache servers, search engines, etc.)
+- belongs_to             : user
+- has_one                : order
+- belongs_to_active_hash : category
+- belongs_to_active_hash : situation 
+- belongs_to_active_hash : load 
+- belongs_to_active_hash : region  
+- belongs_to_active_hash : day  
 
-* Deployment instructions
 
-* ...
+## address テーブル
+
+| Column          | Type       | Options                        |
+| --------------- | ---------- | ------------------------------ |
+| post_code       | string     | null: false                    |
+| prefecture_id   | integer    | null: false                    |
+| municipalities  | string     | null: false                    |
+| address_line1   | string     | null: false                    |
+| address_line2   | string     |                                |
+| phone_number    | string     | null: false                    |
+| order           | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to             : order
+- belongs_to_active_hash : prefecture
+
+## orders テーブル
+
+| Column  | Type       | Options                              |
+| ------- | ---------- | ------------------------------------ |
+| user    | references | null: false, foreign_key: true       |
+| item    | references | null: false, foreign_key: true       |
+
+### Association
+
+- belongs_to :user
+- has_one    :address
+- belongs_to :item
