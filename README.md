@@ -27,9 +27,9 @@
 | category_id        | integer    | null: false                          |
 | situation_id       | integer    | null: false                          |
 | load_id            | integer    | null: false                          |
-| region_id          | integer    | null: false                          |
+| prefectures_id     | integer    | null: false                          |
 | day_id             | integer    | null: false                          |
-| price              | integer    | null: false, precision: 10           |
+| price              | integer    | null: false                          |
 | user               | references | null: false, foreign_key: true       |
 
 
@@ -54,11 +54,13 @@
 | address_line1   | string     | null: false                    |
 | address_line2   | string     |                                |
 | phone_number    | string     | null: false                    |
+| recipient_name  | bigint     | null: false                    |
+| order           | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to             : order
-- belongs_to_active_hash : prefectures
+- belongs_to_active_hash : prefecture
 
 ## orders テーブル
 
