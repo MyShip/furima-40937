@@ -27,7 +27,7 @@
 | category_id        | integer    | null: false                          |
 | situation_id       | integer    | null: false                          |
 | load_id            | integer    | null: false                          |
-| prefectures_id     | integer    | null: false                          |
+| prefecture_id      | integer    | null: false                          |
 | day_id             | integer    | null: false                          |
 | price              | integer    | null: false                          |
 | user               | references | null: false, foreign_key: true       |
@@ -49,12 +49,11 @@
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
 | post_code       | string     | null: false                    |
-| prefectures_id  | integer    | null: false                    |
+| prefecture_id   | integer    | null: false                    |
 | municipalities  | string     | null: false                    |
 | address_line1   | string     | null: false                    |
 | address_line2   | string     |                                |
 | phone_number    | string     | null: false                    |
-| recipient_name  | bigint     | null: false                    |
 | order           | references | null: false, foreign_key: true |
 
 ### Association
