@@ -35,6 +35,41 @@ RSpec.describe 'Users', type: :model do
       expect(another_user.errors[:email]).to include("has already been taken")
     end
 
+    it 'passwordが空では登録できない' do
+      @user.password = ''
+      @user.password_confirmation = ''
+      expect(@user).not_to be_valid
+      expect(@user.errors[:password]).to include("can't be blank", "は半角英数字混合で入力してください")
+    end
+
+    it '英字のみのパスワードでは登録できない' do
+      @user.password = 'abc'
+      @user.password_confirmation = 'acb'
+      expect(@user).not_to be_valid
+      expect(@user.errors[:password]).to include("は半角英数字混合で入力してください")
+    end
+
+    it '数字のみのパスワードでは登録できない' do
+      @user.password = '123'
+      @user.password_confirmation = '123'
+      expect(@user).not_to be_valid
+      expect(@user.errors[:password]).to include("は半角英数字混合で入力してください")
+    end
+
+    it '全角文字を含むパスワードでは登録できない' do
+      @user.password = 'あいうえお'
+      @user.password_confirmation = 'あいうえお'
+      expect(@user).not_to be_valid
+      expect(@user.errors[:password]).to include("は半角英数字混合で入力してください")
+    end
+
+    it 'パスワードとパスワード（確認用）が不一致だと登録できない' do
+      @user.password = 'abc'
+      @user.password_confirmation = 'abd'
+      expect(@user).not_to be_valid
+      expect(@user.errors[:password_confirmation]).to include("doesn't match Password")
+    end
+
     it 'passwordが6文字未満では登録できない' do
       @user.password = @user.password_confirmation = '12345'
       expect(@user).not_to be_valid
@@ -83,13 +118,6 @@ RSpec.describe 'Users', type: :model do
       @user.last_name_reading = 'ひらがな'
       expect(@user).not_to be_valid
       expect(@user.errors[:last_name_reading]).to include("は全角カタカナで入力してください")
-    end
-
-    it 'emailが既に存在している場合は登録できない' do
-      existing_user = FactoryBot.create(:user)
-      @user.email = existing_user.email
-      expect(@user).not_to be_valid
-      expect(@user.errors[:email]).to include("has already been taken")
     end
 
     it 'birthdayが空では登録できない' do

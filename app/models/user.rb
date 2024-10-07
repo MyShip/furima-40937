@@ -5,6 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :name,               presence: true
+
+  validates :password, format: { 
+    with: /\A(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]+\z/, message: "は半角英数字混合で入力してください"
+  }, allow_nil: true
+  
   validates :first_name_write,   presence: true, 
     format: {
       with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: "は全角の日本語で入力してください"
@@ -22,8 +27,7 @@ class User < ApplicationRecord
       with: /\A[ァ-ヶー]+\z/, message: "は全角カタカナで入力してください"
     }
   validates :birthday,           presence: true
-
-  has_many  :orders
-  has_many  :items
+  # has_many  :orders
+  # has_many  :items
        
 end
