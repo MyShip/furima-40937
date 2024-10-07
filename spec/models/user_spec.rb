@@ -61,6 +61,37 @@ RSpec.describe 'Users', type: :model do
       expect(@user).not_to be_valid
     end
 
+    it 'first_name_writeが全角カタカナ以外では登録できない' do
+      @user.first_name_write = 'abc'
+      expect(@user).not_to be_valid
+      expect(@user.errors[:first_name_write]).to include("は全角の日本語で入力してください")
+    end
+
+    it 'last_name_writeが全角カタカナ以外では登録できない' do
+      @user.last_name_write = 'abc'
+      expect(@user).not_to be_valid
+      expect(@user.errors[:last_name_write]).to include("は全角の日本語で入力してください")
+    end
+
+    it 'first_name_readingが全角カタカナでないと登録できない' do
+      @user.first_name_reading = '漢字' 
+      expect(@user).not_to be_valid
+      expect(@user.errors[:first_name_reading]).to include("は全角カタカナで入力してください")
+    end
+
+    it 'last_name_readingが全角カタカナでないと登録できない' do
+      @user.last_name_reading = 'ひらがな'
+      expect(@user).not_to be_valid
+      expect(@user.errors[:last_name_reading]).to include("は全角カタカナで入力してください")
+    end
+
+    it 'emailが既に存在している場合は登録できない' do
+      existing_user = FactoryBot.create(:user)
+      @user.email = existing_user.email
+      expect(@user).not_to be_valid
+      expect(@user.errors[:email]).to include("has already been taken")
+    end
+
     it 'birthdayが空では登録できない' do
       @user.birthday = ''
       expect(@user).not_to be_valid
