@@ -40,7 +40,7 @@
 - belongs_to_active_hash : category
 - belongs_to_active_hash : situation 
 - belongs_to_active_hash : load 
-- belongs_to_active_hash : region  
+- belongs_to_active_hash : prefecture  
 - belongs_to_active_hash : day  
 
 
