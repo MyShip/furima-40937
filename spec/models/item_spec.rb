@@ -10,7 +10,7 @@ RSpec.describe Item, type: :model do
     end
   end
   context '商品出品情報ができない時' do
-    it '商品名が空では出品できない' do
+    it 'userが紐付いていなければ出品できない' do
       @item.user = nil
       expect(@item).not_to be_valid
       expect(@item.errors[:user]).to include("must exist")
