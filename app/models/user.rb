@@ -27,7 +27,7 @@ class User < ApplicationRecord
       with: /\A[ァ-ヶー]+\z/, message: "は全角カタカナで入力してください"
     }
   validates :birthday,           presence: true
-  # has_many  :orders
-  # has_many  :items
+  has_many  :orders
+  has_many  :items
        
 end
