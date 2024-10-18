@@ -130,7 +130,7 @@
       <% if @item.any? %>
       <% @item.each do |item| %>
         <li class='list'>
-        <%= link_to "#" do %>
+        <%= link_to item_path(item) do %>
           <div class="item">
             <%= image_tag item.image, width: "300px", height: "300px"  if item.image.attached?%>
               <div class='item-info'>
