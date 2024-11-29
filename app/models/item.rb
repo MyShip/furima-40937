@@ -28,4 +28,8 @@ class Item < ApplicationRecord
   def was_attached?
     self.image.attached?
   end
+
+  def sold?
+    order.present?
+  end
 end
