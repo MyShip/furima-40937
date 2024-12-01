@@ -26,6 +26,5 @@ class OrderAddressForm
       address_line1: address_line1, address_line2: address_line2, 
       phone_number: phone_number, order_id: order.id
     )
-    
   end
 end
