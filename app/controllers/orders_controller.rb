@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item
+  before_action :check_item_access, only: [:index, :create]
 
   def index
     @order_address_form = OrderAddressForm.new
@@ -27,6 +28,12 @@ class OrdersController < ApplicationController
     ).merge(user_id: current_user.id, item_id: @item.id, token: params[:token])
   end
 
+  def check_item_access
+    # 自身が出品した商品、または売却済み商品の場合はトップページにリダイレクト
+    if @item.user_id == current_user.id || @item.order.present?
+      redirect_to root_path
+    end
+  end
 
   def set_item
     @item = Item.find(params[:item_id])

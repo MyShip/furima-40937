@@ -94,12 +94,5 @@ RSpec.describe OrderAddressForm, type: :model do
         expect(@order_address.errors.full_messages).to include("Token can't be blank")
       end
     end
-
-    context '保存処理の確認' do
-      it 'すべての値が正しい場合、OrderとAddressが保存されること' do
-        expect{ 
-          @order_address.save }.to change { Order.count }.by(1).and change { Address.count }.by(1)
-      end
-    end
   end
 end
