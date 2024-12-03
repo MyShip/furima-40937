@@ -1,5 +1,5 @@
 <%= render "shared/second-header"%>
-
+<%= include_gon %>
 <div class='transaction-contents'>
   <div class='transaction-main'>
     <h1 class='transaction-title-text'>
@@ -14,7 +14,7 @@
         </h2>
         <div class='buy-item-price'>
           <p class='item-price-text'>¥<%= @item.price %>(税込み)</p>
-          <p class='item-price-sub-text'><%= '配送料負担' %></p>
+          <p class='item-price-sub-text'><%= @item.load.name %></p>
         </div>
       </div>
     </div>

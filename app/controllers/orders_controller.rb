@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
   before_action :check_item_access, only: [:index, :create]
 
   def index
+    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     @order_address_form = OrderAddressForm.new
   end
 
@@ -15,6 +16,7 @@ class OrdersController < ApplicationController
       return redirect_to root_path
       
     else
+      gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
       render :index
     end
   end
@@ -40,7 +42,7 @@ class OrdersController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = "sk_test_c27c4036352c946ee8cefcf9"
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
       amount: @item.price,          # 商品の価格
       card: order_params[:token],  # カードトークン

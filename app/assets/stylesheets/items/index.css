@@ -216,6 +216,7 @@ a {
 /* 商品一覧 */
 
 .item-contents {
+  position: relative;
   background-color: #FFF;
   display: flex;
   flex-direction: column;

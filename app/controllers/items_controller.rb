@@ -5,6 +5,7 @@ class ItemsController < ApplicationController
   before_action :prevent_edit_sold_item,   only: [:edit]
 
   def index
+    
     @item = Item.order(created_at: :desc)
   end
 

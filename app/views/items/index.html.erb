@@ -128,26 +128,32 @@
     </div>
     <ul class='item-lists'>
       <% if @item.any? %>
-      <% @item.each do |item| %>
-        <li class='list'>
-        <%= link_to item_path(item) do %>
-          <div class="item">
-            <%= image_tag item.image, width: "300px", height: "300px"  if item.image.attached?%>
-              <div class='item-info'>
-                <h3 class='item-name'>
-                  <%= item.name %>
-                </h3>
-                <div class='item-price'>
-                  <span><%= item.price %>円<br><%= item.load.name %></span>
-                <div class='star-btn'>
-                  <%= image_tag "star.png", class:"star-icon" %>
-              <span class='star-count'>0</span>
-            </div>
-          </div>
-        </div>
-        <% end %>
-      <% end %>
-      <% else %>
+        <% @item.each do |item| %>
+          <li class='list'>
+            <%= link_to item_path(item) do %>
+              <div class="item">
+                 <%= image_tag item.image, width: "300px", height: "300px"  if item.image.attached?%>
+                  <% if item.sold? %>
+                    <div class="sold-out">
+                      <span>Sold Out!!</span>
+                    </div>
+                  <% end %>
+                  <div class='item-info'>
+                    <h3 class='item-name'>
+                      <%= item.name %>
+                    </h3>
+                  <div class='item-price'>
+                    <span><%= item.price %>円<br><%= item.load.name %></span>
+                  <div class='star-btn'>
+                    <%= image_tag "star.png", class:"star-icon" %>
+                    <span class='star-count'>0</span>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </li>
+         <% end %>
+        <% else %>
       <li class='list'>
         <%= link_to '#' do %>
         <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
