@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
  
   belongs_to :user
-  # has_one :order
+  has_one :order
  
   validates :name,          presence: true
   validates :explanation,   presence: true
@@ -27,5 +27,9 @@ class Item < ApplicationRecord
 
   def was_attached?
     self.image.attached?
+  end
+
+  def sold?
+    order.present?
   end
 end
