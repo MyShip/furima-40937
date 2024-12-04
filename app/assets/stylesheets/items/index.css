@@ -216,7 +216,6 @@ a {
 /* 商品一覧 */
 
 .item-contents {
-  position: relative;
   background-color: #FFF;
   display: flex;
   flex-direction: column;
@@ -236,6 +235,12 @@ a {
   text-decoration: none;
   color: #3ccace;
   font-weight: bold;
+}
+
+.item{
+  position: relative;
+  width: 300px;
+  height: 350px;
 }
 
 .item-lists {
@@ -263,7 +268,7 @@ a {
 
 .sold-out {
   position: absolute;
-  top: 40%;
+  top: 38%;
   width: 100%;
   text-align: center;
   background-color: crimson;

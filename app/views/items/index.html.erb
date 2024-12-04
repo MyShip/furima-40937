@@ -132,7 +132,7 @@
           <li class='list'>
             <%= link_to item_path(item) do %>
               <div class="item">
-                 <%= image_tag item.image, width: "300px", height: "300px"  if item.image.attached?%>
+                  <%= image_tag item.image  , width: "300px", height: "300px" if item.image.attached?%>
                   <% if item.sold? %>
                     <div class="sold-out">
                       <span>Sold Out!!</span>
