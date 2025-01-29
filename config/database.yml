@@ -19,7 +19,7 @@ development:
   adapter: mysql2
   username: root
   password:
-  host: dpg-ctb7khl2ng1s73dq7ap0-a
+  host: localhost
   database: furima_40937_development
 
 # Warning: The database defined as "test" will be erased and
@@ -30,7 +30,7 @@ test:
   adapter: mysql2
   username: root
   password:
-  host: dpg-ctb7khl2ng1s73dq7ap0-a
+  host: localhost
   database: furima_40937_test
 
 # As with config/credentials.yml, you never want to store sensitive information,
